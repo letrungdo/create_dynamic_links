@@ -10,7 +10,7 @@ export default function Home() {
     const payload = {
       dynamicLinkInfo: {
         domainUriPrefix: "https://kcmfa.page.link",
-        link: `https://kcmfa.guide.inc/test?qrcode=${barCode}`,
+        link: `https://kcmfa.guide.inc/?barcode_uri=${barCode}`,
         androidInfo: {
           androidPackageName: "com.kabu.kcmfa.dev.guide",
         },
