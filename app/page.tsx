@@ -16,6 +16,7 @@ export default function Home() {
         },
         iosInfo: {
           iosBundleId: "com.kabu.kcmfa.dev.guide",
+          iosAppStoreId: "1661298233",
         },
       },
     };
