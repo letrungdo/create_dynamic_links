@@ -49,7 +49,7 @@ export default function Home() {
       <button className="mt-10 border p-2" onClick={createLink}>
         Create dynamic link
       </button>
-      <a className="mt-5 text-red" href={link}>{link}</a>
+      <a className="mt-5 text-white" href={link}>{link}</a>
       <div className="mb-auto" />
     </main>
   );
