@@ -44,6 +44,7 @@ export default function Home() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(payload),
+        mode: "cors",
       }
     );
     const bodyRes = await res.json();
