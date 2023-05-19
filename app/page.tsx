@@ -23,28 +23,14 @@ export default function Home() {
   }, []);
 
   const createLink = async () => {
-    const payload = {
-      dynamicLinkInfo: {
-        domainUriPrefix: "https://kcmfa.page.link",
-        link: `https://kcmfa.guide.inc/?barcode_uri=${barCode}`,
-        androidInfo: {
-          androidPackageName: "com.kabu.kcmfa.dev.guide",
-        },
-        iosInfo: {
-          iosBundleId: "com.kabu.kcmfa.dev.guide",
-          iosAppStoreId: "1661298233",
-        },
-      },
-    };
     const res = await fetch(
-      `https://firebasedynamiclinks.googleapis.com/v1/shortLinks?key=${process.env.apiKey}`,
+      `/api/dynamic-links?barCode=${barCode}`,
       {
-        method: "post",
+        method: "get",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(payload),
         mode: "cors",
       }
     );
