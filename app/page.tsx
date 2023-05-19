@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 export default function Home() {
   const [barCode, setBarCode] = useState("");
   const [link, setLink] = useState("");
+  const [uniLink, setUniLink] = useState("");
 
   const videoRef = useRef<HTMLVideoElement>(null);
   useEffect(() => {
@@ -64,10 +65,18 @@ export default function Home() {
         />
       </div>
       <button className="mt-10 border p-2" onClick={createLink}>
-        Create dynamic link
+        Create Dynamic Link
+      </button>
+      <button className="mt-4 border p-2" onClick={() => {
+        setUniLink(`https://appversion.kcmfa.dev.guide.inc/?barcode_uri=${barCode}`)
+      }}>
+        Create Uni Link
       </button>
       <a className="mt-5 text-white" href={link}>
         {link}
+      </a>
+      <a className="mt-5 text-white" href={uniLink}>
+        {uniLink}
       </a>
       <div className="mb-auto" />
     </main>
