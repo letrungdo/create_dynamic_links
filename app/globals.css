@@ -17,3 +17,12 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.text-two-line {
+  text-overflow: ellipsis;
+  overflow: hidden !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+}
