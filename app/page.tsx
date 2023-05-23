@@ -1,7 +1,7 @@
 "use client";
 import QrScanner from "qr-scanner";
 import { useEffect, useRef, useState } from "react";
-import { isAndroid } from "react-device-detect";
+import { isAndroid, isIOS } from "react-device-detect";
 
 const uniDomain = "appversion.kcmfa.dev.guide.inc";
 const androidPackageName = "com.kabu.kcmfa.dev.guide";
@@ -44,6 +44,8 @@ export default function Home() {
     let uniLink = `https://${uniDomain}/?barcode_uri=${barCode}`;
     if (isAndroid) {
       uniLink = `intent://${uniDomain}/?barcode_uri=${barCode}#Intent;package=${androidPackageName};scheme=https;S.browser_fallback_url=https://play.google.com/store/apps/details?id=${androidPackageName};end`;
+    } else if(isIOS) {
+      uniLink = `https://appversion.kcmfa.dev.guide.inc/store-links/fallback.html?barcode_uri=${barCode}`
     }
 
     setUniLinkPlus(uniLink);
@@ -90,18 +92,7 @@ export default function Home() {
       </a>
       <a
         className="mt-5 text-white text-two-line"
-        href={isAndroid ? uniLinkPlus : "#"}
-        onClick={() => {
-          if (isAndroid) return;
-          clearTimeout(_timeout);
-          _timeout = setTimeout(function () {
-            if (document.visibilityState === "visible") {
-              // If the user is still on the same page, redirect to the fallback URL
-              window.location.href = `https://apps.apple.com/app/id${iosAppStoreId}?mt=8`;
-            }
-          }, 2000);
-          window.location.href = uniLinkPlus;
-        }}
+        href={uniLinkPlus}
       >
         {uniLinkPlus ? "Open app" : ""}
       </a>
