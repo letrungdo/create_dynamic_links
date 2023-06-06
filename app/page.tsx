@@ -14,7 +14,6 @@ export default function Home() {
   const [uniLinkPlus, setUniLinkPlus] = useState("");
   const [linkInput, setLinkInput] = useState("");
 
-
   const videoRef = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     const qrScanner = new QrScanner(videoRef.current!, (result) => {
@@ -46,8 +45,8 @@ export default function Home() {
     let uniLink = `https://${uniDomain}/?barcode_uri=${barCode}`;
     if (isAndroid) {
       uniLink = `intent://${uniDomain}/?barcode_uri=${barCode}#Intent;package=${androidPackageName};scheme=https;S.browser_fallback_url=https://play.google.com/store/apps/details?id=${androidPackageName};end`;
-    } else if(isIOS) {
-      uniLink = `https://appversion.kcmfa.dev.guide.inc/store-links/fallback.html?barcode_uri=${barCode}`
+    } else if (isIOS) {
+      uniLink = `https://appversion.kcmfa.dev.guide.inc/store-links/fallback.html?barcode_uri=${barCode}`;
     }
 
     setUniLinkPlus(uniLink);
@@ -99,15 +98,22 @@ export default function Home() {
       <a className="mt-5 text-white text-two-line" href={uniLink}>
         {uniLink}
       </a>
-      <a
-        className="mt-5 text-white text-two-line"
-        href={uniLinkPlus}
-      >
+      <a className="mt-5 text-white text-two-line" href={uniLinkPlus}>
         {uniLinkPlus ? "Open app" : ""}
       </a>
-      {linkInput && <a className="mt-5 text-white text-two-line" href={linkInput}>
-        {linkInput}
-      </a>}
+      <button
+        className="mt-5 text-white text-two-line"
+        onClick={() => {
+          window.open(uniLinkPlus);
+        }}
+      >
+        {uniLinkPlus ? "Open app use window.open" : ""}
+      </button>
+      {linkInput && (
+        <a className="mt-5 text-white text-two-line" href={linkInput}>
+          {linkInput}
+        </a>
+      )}
       <div className="mb-auto" />
     </main>
   );
