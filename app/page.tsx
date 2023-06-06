@@ -12,6 +12,8 @@ export default function Home() {
   const [link, setLink] = useState("");
   const [uniLink, setUniLink] = useState("");
   const [uniLinkPlus, setUniLinkPlus] = useState("");
+  const [linkInput, setLinkInput] = useState("");
+
 
   const videoRef = useRef<HTMLVideoElement>(null);
   useEffect(() => {
@@ -84,6 +86,13 @@ export default function Home() {
       >
         Create Uni Link Plus
       </button>
+
+      <button
+        className="mt-4 border p-2 whitespace-nowrap"
+        onClick={() => setLinkInput(barCode)}
+      >
+        Create Link from Input
+      </button>
       <a className="mt-5 text-white text-two-line" href={link}>
         {link}
       </a>
@@ -96,6 +105,9 @@ export default function Home() {
       >
         {uniLinkPlus ? "Open app" : ""}
       </a>
+      {linkInput && <a className="mt-5 text-white text-two-line" href={linkInput}>
+        {linkInput}
+      </a>}
       <div className="mb-auto" />
     </main>
   );
