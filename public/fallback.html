@@ -1,9 +1,52 @@
 <!DOCTYPE html>
 <html>
-  <meta http-equiv="refresh" content="0; url=https://apps.apple.com/app/id1661298233?mt=8" />
+  <!-- <meta
+    http-equiv="refresh"
+    content="0; url=https://apps.apple.com/app/id1661298233?mt=8"
+  /> -->
   <title>kcMFA fallback</title>
-  <head> </head>
+  <head>
+    <style>
+      body,
+      #ios-region,
+      #android-region {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      a {
+        margin-top: 100px;
+      }
+    </style>
+  </head>
   <body>
-    <p><a href="https://apps.apple.com/app/id1661298233?mt=8">Open App Store</a></p>
+    <a href="https://appversion.kcmfa.dev.guide.inc/store-links/fallback.html?barcode_uri=1234">Open App</a>
+
+    <div id="ios-region" style="display: none">
+      <a href="https://apps.apple.com/app/id1661298233?mt=8">Open App Store</a>
+    </div>
+    <div id="android-region" style="display: none">
+      <a
+        href="https://play.google.com/store/apps/details?id=com.kabu.kcmfa.dev.guide"
+        >Open Play Store</a
+      >
+    </div>
+    <script>
+      const isMobile = {
+        Android: function () {
+          return navigator.userAgent.match(/Android/i);
+        },
+        iOS: function () {
+          return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+        },
+      };
+      if (isMobile.iOS()) {
+        document.getElementById("ios-region").style.display = "flex";
+      }
+      if (isMobile.Android()) {
+        document.getElementById("android-region").style.display = "flex";
+      }
+    </script>
   </body>
 </html>
